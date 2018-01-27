@@ -1,3 +1,10 @@
+*.mk
+*.project
+*.cproject
+*.prefs
+*.mk
+*.makefile
+
 # Prerequisites
 *.d
 
