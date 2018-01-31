@@ -7,47 +7,28 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <print.h>
 
-void move_servo_ccw(int servo)
+int main ( )
 {
-	DDRB = servo;
-	for(int i = 0; i < 500; i++ )
-	{
-		PORTB = servo;
-		my_delay (i);
-		PORTB=0;
-		my_delay(1000-i);
-	}
-}
-
-void move_servo_cw()
-{
-	int iDutyCycle = 50;
-	DDRB=0x04 ;
-	for(int i = 0; i < 1000; i++ )
-	{
-		PORTB = 0x00 ;
-		my_delay ( iDutyCycle ) ;
-		PORTB=04;
-		my_delay(100-iDutyCycle);
-	}
-}
-
-void my_delay ( int i )
-{
-	int j ;
-	for ( j =0; j<i ; j++)
-		asm( "nop" ) ;
-}
-
-int main ()
-{
-
-	DDRB = 0x20;
+	DDRB=0x20 ;
+	USARTInit();
+	char c = 85;
 	while ( 1 )
 	{
-		move_servo_ccw(0x04);
-	}
 
+		uart_putchar(c);
+		/*
+		PORTB=0x20 ;
+		_delay_ms(1000);
+		PORTB=0;
+		_delay_ms(1000);
+		int check = TCNT0;
+		printf(check);
+		printf(" test\n");
+		*/
+		//TCCR1B |= 1<<CS10;
+
+	}
 	return 0 ;
 }

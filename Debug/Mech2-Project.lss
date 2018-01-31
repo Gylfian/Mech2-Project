@@ -3,11 +3,11 @@ Mech2-Project.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000001b8  00000000  00000000  00000054  2**1
+  0 .text         00000112  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .stab         000004ec  00000000  00000000  0000020c  2**2
+  1 .stab         000004ec  00000000  00000000  00000168  2**2
                   CONTENTS, READONLY, DEBUGGING
-  2 .stabstr      00000706  00000000  00000000  000006f8  2**0
+  2 .stabstr      000006d3  00000000  00000000  00000654  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -47,241 +47,120 @@ Disassembly of section .text:
   6e:	d8 e0       	ldi	r29, 0x08	; 8
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
-  74:	0e 94 cd 00 	call	0x19a	; 0x19a <main>
-  78:	0c 94 da 00 	jmp	0x1b4	; 0x1b4 <_exit>
+  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
+  78:	0c 94 87 00 	jmp	0x10e	; 0x10e <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000080 <move_servo_ccw>:
-
+00000080 <main>:
 #include <avr/io.h>
 #include <util/delay.h>
+#include <print.h>
 
-void move_servo_ccw(int servo)
+int main ( )
 {
   80:	df 93       	push	r29
   82:	cf 93       	push	r28
-  84:	00 d0       	rcall	.+0      	; 0x86 <move_servo_ccw+0x6>
-  86:	00 d0       	rcall	.+0      	; 0x88 <move_servo_ccw+0x8>
-  88:	cd b7       	in	r28, 0x3d	; 61
-  8a:	de b7       	in	r29, 0x3e	; 62
-  8c:	9c 83       	std	Y+4, r25	; 0x04
-  8e:	8b 83       	std	Y+3, r24	; 0x03
-	DDRB = servo;
-  90:	e4 e2       	ldi	r30, 0x24	; 36
-  92:	f0 e0       	ldi	r31, 0x00	; 0
-  94:	8b 81       	ldd	r24, Y+3	; 0x03
-  96:	80 83       	st	Z, r24
-	for(int i = 0; i < 500; i++ )
-  98:	1a 82       	std	Y+2, r1	; 0x02
-  9a:	19 82       	std	Y+1, r1	; 0x01
-  9c:	1a c0       	rjmp	.+52     	; 0xd2 <move_servo_ccw+0x52>
-	{
-		PORTB = servo;
-  9e:	e5 e2       	ldi	r30, 0x25	; 37
-  a0:	f0 e0       	ldi	r31, 0x00	; 0
-  a2:	8b 81       	ldd	r24, Y+3	; 0x03
-  a4:	80 83       	st	Z, r24
-		my_delay (i);
-  a6:	89 81       	ldd	r24, Y+1	; 0x01
-  a8:	9a 81       	ldd	r25, Y+2	; 0x02
-  aa:	0e 94 ae 00 	call	0x15c	; 0x15c <my_delay>
-		PORTB=0;
-  ae:	e5 e2       	ldi	r30, 0x25	; 37
-  b0:	f0 e0       	ldi	r31, 0x00	; 0
-  b2:	10 82       	st	Z, r1
-		my_delay(1000-i);
-  b4:	28 ee       	ldi	r18, 0xE8	; 232
-  b6:	33 e0       	ldi	r19, 0x03	; 3
-  b8:	89 81       	ldd	r24, Y+1	; 0x01
-  ba:	9a 81       	ldd	r25, Y+2	; 0x02
-  bc:	a9 01       	movw	r20, r18
-  be:	48 1b       	sub	r20, r24
-  c0:	59 0b       	sbc	r21, r25
-  c2:	ca 01       	movw	r24, r20
-  c4:	0e 94 ae 00 	call	0x15c	; 0x15c <my_delay>
-#include <util/delay.h>
-
-void move_servo_ccw(int servo)
-{
-	DDRB = servo;
-	for(int i = 0; i < 500; i++ )
-  c8:	89 81       	ldd	r24, Y+1	; 0x01
-  ca:	9a 81       	ldd	r25, Y+2	; 0x02
-  cc:	01 96       	adiw	r24, 0x01	; 1
-  ce:	9a 83       	std	Y+2, r25	; 0x02
-  d0:	89 83       	std	Y+1, r24	; 0x01
-  d2:	89 81       	ldd	r24, Y+1	; 0x01
-  d4:	9a 81       	ldd	r25, Y+2	; 0x02
-  d6:	51 e0       	ldi	r21, 0x01	; 1
-  d8:	84 3f       	cpi	r24, 0xF4	; 244
-  da:	95 07       	cpc	r25, r21
-  dc:	04 f3       	brlt	.-64     	; 0x9e <move_servo_ccw+0x1e>
-		PORTB = servo;
-		my_delay (i);
-		PORTB=0;
-		my_delay(1000-i);
-	}
-}
-  de:	0f 90       	pop	r0
-  e0:	0f 90       	pop	r0
-  e2:	0f 90       	pop	r0
-  e4:	0f 90       	pop	r0
-  e6:	cf 91       	pop	r28
-  e8:	df 91       	pop	r29
-  ea:	08 95       	ret
-
-000000ec <move_servo_cw>:
-
-void move_servo_cw()
-{
-  ec:	df 93       	push	r29
-  ee:	cf 93       	push	r28
-  f0:	00 d0       	rcall	.+0      	; 0xf2 <move_servo_cw+0x6>
-  f2:	00 d0       	rcall	.+0      	; 0xf4 <move_servo_cw+0x8>
-  f4:	cd b7       	in	r28, 0x3d	; 61
-  f6:	de b7       	in	r29, 0x3e	; 62
-	int iDutyCycle = 50;
-  f8:	82 e3       	ldi	r24, 0x32	; 50
-  fa:	90 e0       	ldi	r25, 0x00	; 0
-  fc:	9c 83       	std	Y+4, r25	; 0x04
-  fe:	8b 83       	std	Y+3, r24	; 0x03
-	DDRB=0x04 ;
- 100:	e4 e2       	ldi	r30, 0x24	; 36
- 102:	f0 e0       	ldi	r31, 0x00	; 0
- 104:	84 e0       	ldi	r24, 0x04	; 4
- 106:	80 83       	st	Z, r24
-	for(int i = 0; i < 1000; i++ )
- 108:	1a 82       	std	Y+2, r1	; 0x02
- 10a:	19 82       	std	Y+1, r1	; 0x01
- 10c:	1a c0       	rjmp	.+52     	; 0x142 <move_servo_cw+0x56>
-	{
-		PORTB = 0x00 ;
- 10e:	e5 e2       	ldi	r30, 0x25	; 37
- 110:	f0 e0       	ldi	r31, 0x00	; 0
- 112:	10 82       	st	Z, r1
-		my_delay ( iDutyCycle ) ;
- 114:	8b 81       	ldd	r24, Y+3	; 0x03
- 116:	9c 81       	ldd	r25, Y+4	; 0x04
- 118:	0e 94 ae 00 	call	0x15c	; 0x15c <my_delay>
-		PORTB=04;
- 11c:	e5 e2       	ldi	r30, 0x25	; 37
- 11e:	f0 e0       	ldi	r31, 0x00	; 0
- 120:	84 e0       	ldi	r24, 0x04	; 4
- 122:	80 83       	st	Z, r24
-		my_delay(100-iDutyCycle);
- 124:	24 e6       	ldi	r18, 0x64	; 100
- 126:	30 e0       	ldi	r19, 0x00	; 0
- 128:	8b 81       	ldd	r24, Y+3	; 0x03
- 12a:	9c 81       	ldd	r25, Y+4	; 0x04
- 12c:	a9 01       	movw	r20, r18
- 12e:	48 1b       	sub	r20, r24
- 130:	59 0b       	sbc	r21, r25
- 132:	ca 01       	movw	r24, r20
- 134:	0e 94 ae 00 	call	0x15c	; 0x15c <my_delay>
-
-void move_servo_cw()
-{
-	int iDutyCycle = 50;
-	DDRB=0x04 ;
-	for(int i = 0; i < 1000; i++ )
- 138:	89 81       	ldd	r24, Y+1	; 0x01
- 13a:	9a 81       	ldd	r25, Y+2	; 0x02
- 13c:	01 96       	adiw	r24, 0x01	; 1
- 13e:	9a 83       	std	Y+2, r25	; 0x02
- 140:	89 83       	std	Y+1, r24	; 0x01
- 142:	89 81       	ldd	r24, Y+1	; 0x01
- 144:	9a 81       	ldd	r25, Y+2	; 0x02
- 146:	53 e0       	ldi	r21, 0x03	; 3
- 148:	88 3e       	cpi	r24, 0xE8	; 232
- 14a:	95 07       	cpc	r25, r21
- 14c:	04 f3       	brlt	.-64     	; 0x10e <move_servo_cw+0x22>
-		PORTB = 0x00 ;
-		my_delay ( iDutyCycle ) ;
-		PORTB=04;
-		my_delay(100-iDutyCycle);
-	}
-}
- 14e:	0f 90       	pop	r0
- 150:	0f 90       	pop	r0
- 152:	0f 90       	pop	r0
- 154:	0f 90       	pop	r0
- 156:	cf 91       	pop	r28
- 158:	df 91       	pop	r29
- 15a:	08 95       	ret
-
-0000015c <my_delay>:
-
-void my_delay ( int i )
-{
- 15c:	df 93       	push	r29
- 15e:	cf 93       	push	r28
- 160:	00 d0       	rcall	.+0      	; 0x162 <my_delay+0x6>
- 162:	00 d0       	rcall	.+0      	; 0x164 <my_delay+0x8>
- 164:	cd b7       	in	r28, 0x3d	; 61
- 166:	de b7       	in	r29, 0x3e	; 62
- 168:	9c 83       	std	Y+4, r25	; 0x04
- 16a:	8b 83       	std	Y+3, r24	; 0x03
-	int j ;
-	for ( j =0; j<i ; j++)
- 16c:	1a 82       	std	Y+2, r1	; 0x02
- 16e:	19 82       	std	Y+1, r1	; 0x01
- 170:	06 c0       	rjmp	.+12     	; 0x17e <my_delay+0x22>
-		asm( "nop" ) ;
- 172:	00 00       	nop
-}
-
-void my_delay ( int i )
-{
-	int j ;
-	for ( j =0; j<i ; j++)
- 174:	89 81       	ldd	r24, Y+1	; 0x01
- 176:	9a 81       	ldd	r25, Y+2	; 0x02
- 178:	01 96       	adiw	r24, 0x01	; 1
- 17a:	9a 83       	std	Y+2, r25	; 0x02
- 17c:	89 83       	std	Y+1, r24	; 0x01
- 17e:	29 81       	ldd	r18, Y+1	; 0x01
- 180:	3a 81       	ldd	r19, Y+2	; 0x02
- 182:	8b 81       	ldd	r24, Y+3	; 0x03
- 184:	9c 81       	ldd	r25, Y+4	; 0x04
- 186:	28 17       	cp	r18, r24
- 188:	39 07       	cpc	r19, r25
- 18a:	9c f3       	brlt	.-26     	; 0x172 <my_delay+0x16>
-		asm( "nop" ) ;
-}
- 18c:	0f 90       	pop	r0
- 18e:	0f 90       	pop	r0
- 190:	0f 90       	pop	r0
- 192:	0f 90       	pop	r0
- 194:	cf 91       	pop	r28
- 196:	df 91       	pop	r29
- 198:	08 95       	ret
-
-0000019a <main>:
-
-int main ()
-{
- 19a:	df 93       	push	r29
- 19c:	cf 93       	push	r28
- 19e:	cd b7       	in	r28, 0x3d	; 61
- 1a0:	de b7       	in	r29, 0x3e	; 62
-
-	DDRB = 0x20;
- 1a2:	e4 e2       	ldi	r30, 0x24	; 36
- 1a4:	f0 e0       	ldi	r31, 0x00	; 0
- 1a6:	80 e2       	ldi	r24, 0x20	; 32
- 1a8:	80 83       	st	Z, r24
+  84:	0f 92       	push	r0
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+	DDRB=0x20 ;
+  8a:	e4 e2       	ldi	r30, 0x24	; 36
+  8c:	f0 e0       	ldi	r31, 0x00	; 0
+  8e:	80 e2       	ldi	r24, 0x20	; 32
+  90:	80 83       	st	Z, r24
+	USARTInit();
+  92:	0e 94 53 00 	call	0xa6	; 0xa6 <USARTInit>
+	char c = 85;
+  96:	85 e5       	ldi	r24, 0x55	; 85
+  98:	89 83       	std	Y+1, r24	; 0x01
 	while ( 1 )
 	{
-		move_servo_ccw(0x04);
- 1aa:	84 e0       	ldi	r24, 0x04	; 4
- 1ac:	90 e0       	ldi	r25, 0x00	; 0
- 1ae:	0e 94 40 00 	call	0x80	; 0x80 <move_servo_ccw>
- 1b2:	fb cf       	rjmp	.-10     	; 0x1aa <main+0x10>
 
-000001b4 <_exit>:
- 1b4:	f8 94       	cli
+		uart_putchar(c);
+  9a:	89 81       	ldd	r24, Y+1	; 0x01
+  9c:	88 2f       	mov	r24, r24
+  9e:	90 e0       	ldi	r25, 0x00	; 0
+  a0:	0e 94 6e 00 	call	0xdc	; 0xdc <uart_putchar>
+  a4:	fa cf       	rjmp	.-12     	; 0x9a <main+0x1a>
 
-000001b6 <__stop_program>:
- 1b6:	ff cf       	rjmp	.-2      	; 0x1b6 <__stop_program>
+000000a6 <USARTInit>:
+
+#include<print.h>
+#include <avr/io.h>
+
+void USARTInit ( )
+{
+  a6:	df 93       	push	r29
+  a8:	cf 93       	push	r28
+  aa:	cd b7       	in	r28, 0x3d	; 61
+  ac:	de b7       	in	r29, 0x3e	; 62
+	UBRR0 = 103; // s e t baudrate ( here 9600 f o r arduino uno R3) 1/9600 = 104 microsec
+  ae:	e4 ec       	ldi	r30, 0xC4	; 196
+  b0:	f0 e0       	ldi	r31, 0x00	; 0
+  b2:	87 e6       	ldi	r24, 0x67	; 103
+  b4:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	91 83       	std	Z+1, r25	; 0x01
+  b8:	80 83       	st	Z, r24
+	UCSR0C|=(1<<UCSZ00) |(1<<UCSZ01) ; //No parity , 8 b i t s , 1 stop b i t
+  ba:	a2 ec       	ldi	r26, 0xC2	; 194
+  bc:	b0 e0       	ldi	r27, 0x00	; 0
+  be:	e2 ec       	ldi	r30, 0xC2	; 194
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	80 81       	ld	r24, Z
+  c4:	86 60       	ori	r24, 0x06	; 6
+  c6:	8c 93       	st	X, r24
+	UCSR0B|=(1<<RXEN0) |(1<<TXEN0) ; // Enable The r e c e i v e r and t r a n s m i t t e r
+  c8:	a1 ec       	ldi	r26, 0xC1	; 193
+  ca:	b0 e0       	ldi	r27, 0x00	; 0
+  cc:	e1 ec       	ldi	r30, 0xC1	; 193
+  ce:	f0 e0       	ldi	r31, 0x00	; 0
+  d0:	80 81       	ld	r24, Z
+  d2:	88 61       	ori	r24, 0x18	; 24
+  d4:	8c 93       	st	X, r24
+}
+  d6:	cf 91       	pop	r28
+  d8:	df 91       	pop	r29
+  da:	08 95       	ret
+
+000000dc <uart_putchar>:
+
+int uart_putchar (char c)
+{
+  dc:	df 93       	push	r29
+  de:	cf 93       	push	r28
+  e0:	0f 92       	push	r0
+  e2:	cd b7       	in	r28, 0x3d	; 61
+  e4:	de b7       	in	r29, 0x3e	; 62
+  e6:	89 83       	std	Y+1, r24	; 0x01
+	while ( ! ( UCSR0A & (1<<UDRE0) ) )
+  e8:	e0 ec       	ldi	r30, 0xC0	; 192
+  ea:	f0 e0       	ldi	r31, 0x00	; 0
+  ec:	80 81       	ld	r24, Z
+  ee:	88 2f       	mov	r24, r24
+  f0:	90 e0       	ldi	r25, 0x00	; 0
+  f2:	80 72       	andi	r24, 0x20	; 32
+  f4:	90 70       	andi	r25, 0x00	; 0
+  f6:	00 97       	sbiw	r24, 0x00	; 0
+  f8:	b9 f3       	breq	.-18     	; 0xe8 <uart_putchar+0xc>
+		; // wait f o r ready
+	UDR0 = c ; // send the char
+  fa:	e6 ec       	ldi	r30, 0xC6	; 198
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	89 81       	ldd	r24, Y+1	; 0x01
+ 100:	80 83       	st	Z, r24
+	return 0 ;
+ 102:	80 e0       	ldi	r24, 0x00	; 0
+ 104:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 106:	0f 90       	pop	r0
+ 108:	cf 91       	pop	r28
+ 10a:	df 91       	pop	r29
+ 10c:	08 95       	ret
+
+0000010e <_exit>:
+ 10e:	f8 94       	cli
+
+00000110 <__stop_program>:
+ 110:	ff cf       	rjmp	.-2      	; 0x110 <__stop_program>
