@@ -3,42 +3,44 @@ Mech2-Project.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000112  00000000  00000000  00000054  2**1
+  0 .data         0000000e  00800100  00000164  000001d8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000164  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .stab         000004ec  00000000  00000000  00000168  2**2
+  2 .stab         000005a0  00000000  00000000  000001e8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  2 .stabstr      000006d3  00000000  00000000  00000654  2**0
+  3 .stabstr      000008b3  00000000  00000000  00000788  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
-   4:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-   8:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-   c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  10:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  14:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  18:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  1c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  20:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  24:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  28:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  2c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  30:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  34:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  38:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  3c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  40:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  44:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  48:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  4c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  50:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  54:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  58:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  5c:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  60:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
-  64:	0c 94 3e 00 	jmp	0x7c	; 0x7c <__bad_interrupt>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
 
 00000068 <__ctors_end>:
   68:	11 24       	eor	r1, r1
@@ -47,120 +49,167 @@ Disassembly of section .text:
   6e:	d8 e0       	ldi	r29, 0x08	; 8
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
-  74:	0e 94 40 00 	call	0x80	; 0x80 <main>
-  78:	0c 94 87 00 	jmp	0x10e	; 0x10e <_exit>
 
-0000007c <__bad_interrupt>:
-  7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 e6       	ldi	r30, 0x64	; 100
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
 
-00000080 <main>:
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	ae 30       	cpi	r26, 0x0E	; 14
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+  8a:	0e 94 4b 00 	call	0x96	; 0x96 <main>
+  8e:	0c 94 b0 00 	jmp	0x160	; 0x160 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <main>:
 #include <avr/io.h>
 #include <util/delay.h>
-#include <print.h>
+#include "print.h"
 
 int main ( )
 {
-  80:	df 93       	push	r29
-  82:	cf 93       	push	r28
-  84:	0f 92       	push	r0
-  86:	cd b7       	in	r28, 0x3d	; 61
-  88:	de b7       	in	r29, 0x3e	; 62
-	DDRB=0x20 ;
-  8a:	e4 e2       	ldi	r30, 0x24	; 36
-  8c:	f0 e0       	ldi	r31, 0x00	; 0
-  8e:	80 e2       	ldi	r24, 0x20	; 32
-  90:	80 83       	st	Z, r24
-	USARTInit();
-  92:	0e 94 53 00 	call	0xa6	; 0xa6 <USARTInit>
-	char c = 85;
-  96:	85 e5       	ldi	r24, 0x55	; 85
-  98:	89 83       	std	Y+1, r24	; 0x01
-	while ( 1 )
-	{
+  96:	df 93       	push	r29
+  98:	cf 93       	push	r28
+  9a:	0f 92       	push	r0
+  9c:	cd b7       	in	r28, 0x3d	; 61
+  9e:	de b7       	in	r29, 0x3e	; 62
+	DDRD |= 0xFF;
+  a0:	ea e2       	ldi	r30, 0x2A	; 42
+  a2:	f0 e0       	ldi	r31, 0x00	; 0
+  a4:	80 81       	ld	r24, Z
+  a6:	ea e2       	ldi	r30, 0x2A	; 42
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	8f ef       	ldi	r24, 0xFF	; 255
+  ac:	80 83       	st	Z, r24
+	TCCR1A |= 1<<WGM11 | 1<<COM1A1 | 1<<COM1A0;
+  ae:	a0 e8       	ldi	r26, 0x80	; 128
+  b0:	b0 e0       	ldi	r27, 0x00	; 0
+  b2:	e0 e8       	ldi	r30, 0x80	; 128
+  b4:	f0 e0       	ldi	r31, 0x00	; 0
+  b6:	80 81       	ld	r24, Z
+  b8:	82 6c       	ori	r24, 0xC2	; 194
+  ba:	8c 93       	st	X, r24
+	TCCR1B |= 1<<WGM13 | 1<<WGM12 | 1<<CS10;
+  bc:	a1 e8       	ldi	r26, 0x81	; 129
+  be:	b0 e0       	ldi	r27, 0x00	; 0
+  c0:	e1 e8       	ldi	r30, 0x81	; 129
+  c2:	f0 e0       	ldi	r31, 0x00	; 0
+  c4:	80 81       	ld	r24, Z
+  c6:	89 61       	ori	r24, 0x19	; 25
+  c8:	8c 93       	st	X, r24
+	ICR1 = 50000;
+  ca:	e6 e8       	ldi	r30, 0x86	; 134
+  cc:	f0 e0       	ldi	r31, 0x00	; 0
+  ce:	80 e5       	ldi	r24, 0x50	; 80
+  d0:	93 ec       	ldi	r25, 0xC3	; 195
+  d2:	91 83       	std	Z+1, r25	; 0x01
+  d4:	80 83       	st	Z, r24
+	OCR1A = ICR1 - 8000; //18000
+  d6:	a8 e8       	ldi	r26, 0x88	; 136
+  d8:	b0 e0       	ldi	r27, 0x00	; 0
+  da:	e6 e8       	ldi	r30, 0x86	; 134
+  dc:	f0 e0       	ldi	r31, 0x00	; 0
+  de:	80 81       	ld	r24, Z
+  e0:	91 81       	ldd	r25, Z+1	; 0x01
+  e2:	80 54       	subi	r24, 0x40	; 64
+  e4:	9f 41       	sbci	r25, 0x1F	; 31
+  e6:	11 96       	adiw	r26, 0x01	; 1
+  e8:	9c 93       	st	X, r25
+  ea:	8e 93       	st	-X, r24
+  ec:	ff cf       	rjmp	.-2      	; 0xec <main+0x56>
 
-		uart_putchar(c);
-  9a:	89 81       	ldd	r24, Y+1	; 0x01
-  9c:	88 2f       	mov	r24, r24
-  9e:	90 e0       	ldi	r25, 0x00	; 0
-  a0:	0e 94 6e 00 	call	0xdc	; 0xdc <uart_putchar>
-  a4:	fa cf       	rjmp	.-12     	; 0x9a <main+0x1a>
-
-000000a6 <USARTInit>:
-
-#include<print.h>
+000000ee <USARTInit>:
 #include <avr/io.h>
+#include <stdio.h>
+
 
 void USARTInit ( )
 {
-  a6:	df 93       	push	r29
-  a8:	cf 93       	push	r28
-  aa:	cd b7       	in	r28, 0x3d	; 61
-  ac:	de b7       	in	r29, 0x3e	; 62
+  ee:	df 93       	push	r29
+  f0:	cf 93       	push	r28
+  f2:	cd b7       	in	r28, 0x3d	; 61
+  f4:	de b7       	in	r29, 0x3e	; 62
 	UBRR0 = 103; // s e t baudrate ( here 9600 f o r arduino uno R3) 1/9600 = 104 microsec
-  ae:	e4 ec       	ldi	r30, 0xC4	; 196
-  b0:	f0 e0       	ldi	r31, 0x00	; 0
-  b2:	87 e6       	ldi	r24, 0x67	; 103
-  b4:	90 e0       	ldi	r25, 0x00	; 0
-  b6:	91 83       	std	Z+1, r25	; 0x01
-  b8:	80 83       	st	Z, r24
+  f6:	e4 ec       	ldi	r30, 0xC4	; 196
+  f8:	f0 e0       	ldi	r31, 0x00	; 0
+  fa:	87 e6       	ldi	r24, 0x67	; 103
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	91 83       	std	Z+1, r25	; 0x01
+ 100:	80 83       	st	Z, r24
 	UCSR0C|=(1<<UCSZ00) |(1<<UCSZ01) ; //No parity , 8 b i t s , 1 stop b i t
-  ba:	a2 ec       	ldi	r26, 0xC2	; 194
-  bc:	b0 e0       	ldi	r27, 0x00	; 0
-  be:	e2 ec       	ldi	r30, 0xC2	; 194
-  c0:	f0 e0       	ldi	r31, 0x00	; 0
-  c2:	80 81       	ld	r24, Z
-  c4:	86 60       	ori	r24, 0x06	; 6
-  c6:	8c 93       	st	X, r24
+ 102:	a2 ec       	ldi	r26, 0xC2	; 194
+ 104:	b0 e0       	ldi	r27, 0x00	; 0
+ 106:	e2 ec       	ldi	r30, 0xC2	; 194
+ 108:	f0 e0       	ldi	r31, 0x00	; 0
+ 10a:	80 81       	ld	r24, Z
+ 10c:	86 60       	ori	r24, 0x06	; 6
+ 10e:	8c 93       	st	X, r24
 	UCSR0B|=(1<<RXEN0) |(1<<TXEN0) ; // Enable The r e c e i v e r and t r a n s m i t t e r
-  c8:	a1 ec       	ldi	r26, 0xC1	; 193
-  ca:	b0 e0       	ldi	r27, 0x00	; 0
-  cc:	e1 ec       	ldi	r30, 0xC1	; 193
-  ce:	f0 e0       	ldi	r31, 0x00	; 0
-  d0:	80 81       	ld	r24, Z
-  d2:	88 61       	ori	r24, 0x18	; 24
-  d4:	8c 93       	st	X, r24
+ 110:	a1 ec       	ldi	r26, 0xC1	; 193
+ 112:	b0 e0       	ldi	r27, 0x00	; 0
+ 114:	e1 ec       	ldi	r30, 0xC1	; 193
+ 116:	f0 e0       	ldi	r31, 0x00	; 0
+ 118:	80 81       	ld	r24, Z
+ 11a:	88 61       	ori	r24, 0x18	; 24
+ 11c:	8c 93       	st	X, r24
 }
-  d6:	cf 91       	pop	r28
-  d8:	df 91       	pop	r29
-  da:	08 95       	ret
+ 11e:	cf 91       	pop	r28
+ 120:	df 91       	pop	r29
+ 122:	08 95       	ret
 
-000000dc <uart_putchar>:
+00000124 <uart_putchar>:
 
-int uart_putchar (char c)
+int uart_putchar (char c, FILE * stream)
 {
-  dc:	df 93       	push	r29
-  de:	cf 93       	push	r28
-  e0:	0f 92       	push	r0
-  e2:	cd b7       	in	r28, 0x3d	; 61
-  e4:	de b7       	in	r29, 0x3e	; 62
-  e6:	89 83       	std	Y+1, r24	; 0x01
+ 124:	df 93       	push	r29
+ 126:	cf 93       	push	r28
+ 128:	00 d0       	rcall	.+0      	; 0x12a <uart_putchar+0x6>
+ 12a:	0f 92       	push	r0
+ 12c:	cd b7       	in	r28, 0x3d	; 61
+ 12e:	de b7       	in	r29, 0x3e	; 62
+ 130:	89 83       	std	Y+1, r24	; 0x01
+ 132:	7b 83       	std	Y+3, r23	; 0x03
+ 134:	6a 83       	std	Y+2, r22	; 0x02
 	while ( ! ( UCSR0A & (1<<UDRE0) ) )
-  e8:	e0 ec       	ldi	r30, 0xC0	; 192
-  ea:	f0 e0       	ldi	r31, 0x00	; 0
-  ec:	80 81       	ld	r24, Z
-  ee:	88 2f       	mov	r24, r24
-  f0:	90 e0       	ldi	r25, 0x00	; 0
-  f2:	80 72       	andi	r24, 0x20	; 32
-  f4:	90 70       	andi	r25, 0x00	; 0
-  f6:	00 97       	sbiw	r24, 0x00	; 0
-  f8:	b9 f3       	breq	.-18     	; 0xe8 <uart_putchar+0xc>
+ 136:	e0 ec       	ldi	r30, 0xC0	; 192
+ 138:	f0 e0       	ldi	r31, 0x00	; 0
+ 13a:	80 81       	ld	r24, Z
+ 13c:	88 2f       	mov	r24, r24
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	80 72       	andi	r24, 0x20	; 32
+ 142:	90 70       	andi	r25, 0x00	; 0
+ 144:	00 97       	sbiw	r24, 0x00	; 0
+ 146:	b9 f3       	breq	.-18     	; 0x136 <uart_putchar+0x12>
 		; // wait f o r ready
 	UDR0 = c ; // send the char
-  fa:	e6 ec       	ldi	r30, 0xC6	; 198
-  fc:	f0 e0       	ldi	r31, 0x00	; 0
-  fe:	89 81       	ldd	r24, Y+1	; 0x01
- 100:	80 83       	st	Z, r24
+ 148:	e6 ec       	ldi	r30, 0xC6	; 198
+ 14a:	f0 e0       	ldi	r31, 0x00	; 0
+ 14c:	89 81       	ldd	r24, Y+1	; 0x01
+ 14e:	80 83       	st	Z, r24
 	return 0 ;
- 102:	80 e0       	ldi	r24, 0x00	; 0
- 104:	90 e0       	ldi	r25, 0x00	; 0
+ 150:	80 e0       	ldi	r24, 0x00	; 0
+ 152:	90 e0       	ldi	r25, 0x00	; 0
 }
- 106:	0f 90       	pop	r0
- 108:	cf 91       	pop	r28
- 10a:	df 91       	pop	r29
- 10c:	08 95       	ret
+ 154:	0f 90       	pop	r0
+ 156:	0f 90       	pop	r0
+ 158:	0f 90       	pop	r0
+ 15a:	cf 91       	pop	r28
+ 15c:	df 91       	pop	r29
+ 15e:	08 95       	ret
 
-0000010e <_exit>:
- 10e:	f8 94       	cli
+00000160 <_exit>:
+ 160:	f8 94       	cli
 
-00000110 <__stop_program>:
- 110:	ff cf       	rjmp	.-2      	; 0x110 <__stop_program>
+00000162 <__stop_program>:
+ 162:	ff cf       	rjmp	.-2      	; 0x162 <__stop_program>

@@ -7,6 +7,8 @@
 
 #include<print.h>
 #include <avr/io.h>
+#include <stdio.h>
+
 
 void USARTInit ( )
 {
@@ -15,12 +17,11 @@ void USARTInit ( )
 	UCSR0B|=(1<<RXEN0) |(1<<TXEN0) ; // Enable The r e c e i v e r and t r a n s m i t t e r
 }
 
-int uart_putchar (char c)
+int uart_putchar (char c, FILE * stream)
 {
 	while ( ! ( UCSR0A & (1<<UDRE0) ) )
 		; // wait f o r ready
 	UDR0 = c ; // send the char
 	return 0 ;
 }
-
 
